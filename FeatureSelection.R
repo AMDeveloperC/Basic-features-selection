@@ -1,7 +1,7 @@
 library('FSelector');
 
 # return the top k word most frequent
-most_frequent <- function(dataset, features, etichette) {
+mostFrequents <- function(dataset, features, etichette) {
     mdataset <- as.matrix(dataset[,1:length(dataset)-1]);
     selected <- mdataset[, order(colSums(mdataset), decreasing=T)][,1:features];
     selected <- cbind(selected, etichette);
@@ -38,6 +38,6 @@ if (interactive()) {
     # Reading dataset and preparation to features selection
     dataset <- read.table("./Matrix.txt", header=T, sep=" ", dec=".");
     labels <- read.table("./Labels.txt");
-    submatrix <- most_frequent(dataset, 50, labels);
+    submatrix <- mostFrequents(dataset, 50, labels);
     write.table(submatrix, "./SubMatrix.txt", sep=" ");
 }
